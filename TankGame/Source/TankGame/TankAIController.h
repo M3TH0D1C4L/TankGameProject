@@ -16,7 +16,9 @@ class TANKGAME_API ATankAIController : public AAIController
 
 public:
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 	class ATank* GetControlledTank() const;
 	class ATank* GetTankPlayer() const;
+	void AimAtPlayer();
 	
 };

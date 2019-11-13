@@ -15,14 +15,17 @@ void ATankAIController::BeginPlay()
 		FString Name = GetControlledTank()->GetName();
 		UE_LOG(LogTemp, Warning, TEXT("AI %s found."), *Name);
 	}
+}
+
+void ATankAIController::Tick(float DeltaTime)
+{
+	Super::Tick(DeltaTime);
 
 	if (GetTankPlayer())
 	{
-		FString PlayerName = GetTankPlayer()->GetName();
-		UE_LOG(LogTemp, Warning, TEXT("AI found Player %s."), *PlayerName);
+		GetControlledTank()->AimAt(GetTankPlayer()->GetActorLocation());
 	}
 }
-
 
 ATank* ATankAIController::GetControlledTank() const
 {
@@ -32,4 +35,14 @@ ATank* ATankAIController::GetControlledTank() const
 ATank* ATankAIController::GetTankPlayer() const
 {
 	return Cast<ATank>(GetWorld()->GetFirstPlayerController()->GetPawn());
+}
+
+void ATankAIController::AimAtPlayer()
+{
+	/*if (GetTankPlayer())
+	{
+		FString PlayerName = GetTankPlayer()->GetName();
+		FVector PlayerLocation = GetTankPlayer()->GetActorLocation();
+		UE_LOG(LogTemp, Warning, TEXT("AI found Player %s, aiming at %s."), *PlayerName, *PlayerLocation.ToString());
+	}*/
 }
