@@ -7,3 +7,6 @@ Course Project creating an open world Tank Battle game.
 * .gitignore relocated to include proper directories
 * Further refine .gitignore
 * Iterative Cycle 1: World. Basic World Landscape Created.
+* Iterative Cycle 1: Controls. Tank Created and Camera Controls Bound
+* Iterative Cycle 1: UI. Basic HUD and Main Menu widgets created. Error: SourceTree does not seem to be properly tracking the file changes. This commit is larger than it probably should be.
+* Iterative Cyle 1 Finished. Some extra UI functionality added.
