@@ -50,7 +50,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	FVector2D ScreenLocation = FVector2D((ViewportSizeX * CrosshairLocationX), (ViewportSizeY * CrosshairLocationY));
 	/**/
 
-	/** Take the crosshairs on screen pixel location and line trace through it from the camera */
+	/** Take the crosshair on screen pixel location and line trace through it from the camera */
 	FVector CrosshairDirection;
 	if (GetLookDirection(ScreenLocation, CrosshairDirection))
 	{
@@ -70,7 +70,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	/**/
 }
 
-// Converts the crosshairs on screen pixel location to a direction vector in the 3D Viewport
+// Converts the crosshair on screen pixel location to a direction vector in the 3D Viewport
 bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& CrosshairDirection) const
 {
 	FVector CameraWorldLocation;

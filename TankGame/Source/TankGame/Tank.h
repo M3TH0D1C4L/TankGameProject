@@ -15,9 +15,15 @@ public:
 	// Sets default values for this pawn's properties
 	ATank();
 
+	UPROPERTY(EditAnywhere, Category = "Firing")
+	float LaunchSpeed = 8000.f;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
+	class UAimingComponent* AimingComponent;
+	class UTankBarrel* TankBarrel;
 
 public:	
 	// Called every frame
@@ -27,4 +33,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void SetBarrelReference(UTankBarrel* BarrelToSet);
+
 };
