@@ -41,7 +41,7 @@ void ATankPlayerController::AimAtCrosshair()
 	}
 }
 
-bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
+bool ATankPlayerController::GetSightRayHitLocation(FVector& RayHitLocation) const
 {
 	/** Reflects the crosshairs on screen pixel location */
 	int32 ViewportSizeX;
@@ -54,7 +54,7 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
 	FVector CrosshairDirection;
 	if (GetLookDirection(ScreenLocation, CrosshairDirection))
 	{
-		if (CrosshairLineTraceHitLocation(CrosshairDirection, HitLocation))
+		if (CrosshairLineTraceHitLocation(CrosshairDirection, RayHitLocation))
 		{
 			return true;
 		}
@@ -78,19 +78,19 @@ bool ATankPlayerController::GetLookDirection(FVector2D ScreenLocation, FVector& 
 }
 
 // Line trace from the camera through the crosshair on screen and return the location of the line trace hit
-bool ATankPlayerController::CrosshairLineTraceHitLocation(FVector CrosshairDirection, FVector& HitLocation) const
+bool ATankPlayerController::CrosshairLineTraceHitLocation(FVector CrosshairDirection, FVector& RayHitLocation) const
 {
 	FHitResult HitResult;
 	FVector StartLocation = PlayerCameraManager->GetCameraLocation();
 	FVector EndLocation = StartLocation + (CrosshairDirection * LineTraceRange);
 	if (GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECollisionChannel::ECC_Visibility))
 	{
-		HitLocation = HitResult.Location;
+		RayHitLocation = HitResult.Location;
 		return true;
 	}
 	else
 	{ 
-		HitLocation = FVector(0.f);
+		RayHitLocation = FVector(0.f);
 		return false;
 	}
 }

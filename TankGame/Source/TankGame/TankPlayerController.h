@@ -21,9 +21,9 @@ public:
 	void AimAtCrosshair();
 
 	/** Used for line trace */
-	bool GetSightRayHitLocation(FVector& HitLocation) const;
+	bool GetSightRayHitLocation(FVector& RayHitLocation) const;
 	bool GetLookDirection(FVector2D ScreenLocation, FVector& CrosshairDirection) const;
-	bool CrosshairLineTraceHitLocation(FVector CrosshairDirection, FVector& HitLocation) const;
+	bool CrosshairLineTraceHitLocation(FVector CrosshairDirection, FVector& RayHitLocation) const;
 	/**/
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Crosshair")
