@@ -16,7 +16,7 @@ public:
 	ATank();
 
 	UPROPERTY(EditAnywhere, Category = "Aim")
-	float LaunchSpeed = 8000.f;
+	float LaunchSpeed = 4000.f;
 
 protected:
 	// Called when the game starts or when spawned
@@ -27,6 +27,11 @@ public:
 	class UTankBarrel* TankBarrel;
 	class UTankTurret* TankTurret;
 
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	TSubclassOf<class AProjectile> ProjectileBlueprint;
+
+	UTankBarrel* Barrel = nullptr;
+
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -34,4 +39,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void SetTankParts(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet);
+
+	UFUNCTION(BlueprintCallable, Category = "Aim")
+	void Fire();
 };
