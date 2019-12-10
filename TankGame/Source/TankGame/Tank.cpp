@@ -14,7 +14,6 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 
 	AimingComponent = CreateDefaultSubobject<UAimingComponent>(TEXT("Aiming Component"));
-
 }
 
 // Called when the game starts or when spawned
@@ -45,13 +44,17 @@ void ATank::SetTankParts(UTankBarrel* BarrelToSet, UTankTurret* TurretToSet)
 
 void ATank::Fire()
 {
-	if (!Barrel)
+	bool bIsReloaded = (FPlatformTime::Seconds() - LastFired) > ReloadTime;
+
+	if (bIsReloaded)
 	{
-		return;
-	}
-	else
-	{ 
-		UE_LOG(LogTemp, Warning, TEXT("Fire."))
-		GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Barrel->GetSocketLocation("FiringPoint"), Barrel->GetSocketRotation("FiringPoint"));
+		if (Barrel && bIsReloaded)
+		{
+			AProjectile* Projectile = GetWorld()->SpawnActor<AProjectile>(ProjectileBlueprint, Barrel->GetSocketLocation("FiringPoint"), Barrel->GetSocketRotation("FiringPoint"));
+
+			Projectile->LaunchProjectile(LaunchSpeed);
+
+			LastFired = FPlatformTime::Seconds();
+		}
 	}
 }

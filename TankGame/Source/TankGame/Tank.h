@@ -17,15 +17,18 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Aim")
 	float LaunchSpeed = 4000.f;
+	
+	float ReloadTime = 3.f;
+	double LastFired = 0;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
-	class UAimingComponent* AimingComponent;
-	class UTankBarrel* TankBarrel;
-	class UTankTurret* TankTurret;
+	class UAimingComponent* AimingComponent = nullptr;
+	class UTankBarrel* TankBarrel = nullptr;
+	class UTankTurret* TankTurret = nullptr;
 
 	UPROPERTY(EditAnywhere, Category = "Setup")
 	TSubclassOf<class AProjectile> ProjectileBlueprint;
