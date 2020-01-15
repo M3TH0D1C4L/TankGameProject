@@ -14,7 +14,6 @@ void ATankPlayerController::BeginPlay()
 	if (GetControlledTank())
 	{
 		FString Name = GetControlledTank()->GetName();
-		UE_LOG(LogTemp, Warning, TEXT("Player %s found."), *Name);
 	}
 }
 

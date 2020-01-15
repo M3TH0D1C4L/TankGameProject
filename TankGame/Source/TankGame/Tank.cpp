@@ -6,6 +6,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "Projectile.h"
 #include "TankBarrel.h"
+#include "TankMovementComponent.h"
 
 // Sets default values
 ATank::ATank()
